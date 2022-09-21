@@ -21,12 +21,18 @@ repositories {
 dependencies {
     implementation("me.lucko:helper:5.6.12")
     implementation("com.github.cryptomorin:XSeries:9.1.0") { isTransitive = false }
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10")
     kapt("me.lucko:helper:5.6.12")
     compileOnly("org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+val shadowJar: com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar by tasks
+shadowJar.apply {
+    minimize()
 }
 
 tasks.withType<KotlinCompile> {
